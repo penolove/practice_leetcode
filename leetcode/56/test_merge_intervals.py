@@ -1,6 +1,8 @@
 import unittest
-from typing import List
 import timeit
+from typing import List
+
+from leetcode.cython_merge_56 import solution2 as cython_solution2
 
 
 class TestMergeInterval(unittest.TestCase):
@@ -87,3 +89,5 @@ class TestMergeInterval(unittest.TestCase):
         print("---profile solutions---")
         print("solution1: ", timeit.timeit(lambda: self.solution1(input_), number=1000))
         print("solution2: ", timeit.timeit(lambda: self.solution2(input_), number=1000))
+        # cython implementation without code change shows 4 time faster
+        print("cy_solution2: ", timeit.timeit(lambda: cython_solution2(input_), number=1000))

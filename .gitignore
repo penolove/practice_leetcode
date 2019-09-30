@@ -3,3 +3,6 @@
 .tox
 .python-version
 .coverage
+practice_leetcode.egg-info
+build
+*.so
