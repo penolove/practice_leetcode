@@ -15,5 +15,6 @@ optional:
 ## check if test pass every time before commit
 ```
 flake8
+# if you are using ipdb to debug please set the -s flag
 coverage run -m pytest --verbose
 ```
