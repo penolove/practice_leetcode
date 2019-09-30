@@ -1,0 +1,5 @@
+.vscode
+*.pyc
+.tox
+.python-version
+.coverage
