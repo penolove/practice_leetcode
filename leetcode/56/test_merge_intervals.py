@@ -1,5 +1,6 @@
 import unittest
 from typing import List
+import timeit
 
 
 class TestMergeInterval(unittest.TestCase):
@@ -80,3 +81,9 @@ class TestMergeInterval(unittest.TestCase):
     def test_merge3(self):
         self.assertListEqual(
             self.merge([[1, 4], [2, 3]]), [[1, 4]])
+
+    def test_profiling(self):
+        input_ = [[1, 3], [2, 6], [8, 10], [15, 18]]
+        print("---profile solutions---")
+        print("solution1: ", timeit.timeit(lambda: self.solution1(input_), number=1000))
+        print("solution2: ", timeit.timeit(lambda: self.solution2(input_), number=1000))
