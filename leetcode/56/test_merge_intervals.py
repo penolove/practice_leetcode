@@ -1,5 +1,6 @@
 import unittest
 import timeit
+from operator import itemgetter
 from typing import List
 
 from leetcode.cython_merge_56 import solution2 as cython_solution2
@@ -52,14 +53,10 @@ class TestMergeInterval(unittest.TestCase):
         instead of keep the interval pool, we can use a pointer prev to reach our goal
         faster than 98% python solution
         """
-        def is_overlapped(left, right):
-            overlapped = left[1] - right[0]
-            return overlapped >= 0
-
         result = []
         prev = None
 
-        intervals.sort(key=lambda x: x[0])  # this can be faster with itemgetter
+        intervals.sort(key=itemgetter(0))
         for interval in intervals:
             if prev is None:
                 prev = interval

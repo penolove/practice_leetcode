@@ -1,16 +1,10 @@
-def solution2(intervals):
-    """
-    instead of keep the interval pool, we can use a pointer prev to reach our goal
-    faster than 98% python solution
-    """
-    def is_overlapped(left, right):
-        overlapped = left[1] - right[0]
-        return overlapped >= 0
+from operator import itemgetter
 
+cpdef list solution2(list intervals):
     result = []
     prev = None
 
-    intervals.sort(key=lambda x: x[0])  # this can be faster with itemgetter
+    intervals.sort(key=itemgetter(0))  # this can be faster with itemgetter
     for interval in intervals:
         if prev is None:
             prev = interval
