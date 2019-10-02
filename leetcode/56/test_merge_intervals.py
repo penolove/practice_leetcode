@@ -2,8 +2,11 @@ import unittest
 import timeit
 from operator import itemgetter
 from typing import List
+import logging
 
 from leetcode.cython_merge_56 import solution2 as cython_solution2
+
+LOG = logging.getLogger(__name__)
 
 
 class TestMergeInterval(unittest.TestCase):
@@ -83,8 +86,9 @@ class TestMergeInterval(unittest.TestCase):
 
     def test_profiling(self):
         input_ = [[1, 3], [2, 6], [8, 10], [15, 18]]
-        print("---profile solutions---")
-        print("solution1: ", timeit.timeit(lambda: self.solution1(input_), number=1000))
-        print("solution2: ", timeit.timeit(lambda: self.solution2(input_), number=1000))
+        LOG.info("---profile solutions---")
+        LOG.info("56. solution1: %s", timeit.timeit(lambda: self.solution1(input_), number=1000))
+        LOG.info("56. solution2: %s", timeit.timeit(lambda: self.solution2(input_), number=1000))
         # cython implementation without code change shows 4 time faster
-        print("cy_solution2: ", timeit.timeit(lambda: cython_solution2(input_), number=1000))
+        LOG.info("56. cy_solution2: %s",
+                 timeit.timeit(lambda: cython_solution2(input_), number=1000))
