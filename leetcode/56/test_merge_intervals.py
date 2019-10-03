@@ -4,7 +4,7 @@ from operator import itemgetter
 from typing import List
 import logging
 
-from leetcode.cython_merge_56 import solution2 as cython_solution2
+from leetcode.cython_56 import solution2 as cython_solution2
 
 LOG = logging.getLogger(__name__)
 

@@ -1,5 +1,11 @@
 import unittest
+import timeit
 from typing import List
+import logging
+
+from leetcode.cython_55 import solution3 as cython_solution3
+
+LOG = logging.getLogger(__name__)
 
 
 class TestJumpGame(unittest.TestCase):
@@ -9,6 +15,14 @@ class TestJumpGame(unittest.TestCase):
     Output: True
     Explanation: Jump 1 step from index 0 to 1, then 3 steps to the last index.
     """
+    test_data = [
+        [2,  0,  6,  9,  8,  4,  5,  0,  8,  9,  1,  2,  9,  6,  8,  8,  0,  6,  3,  1,  2,  2,
+         1,  2,  6,  5,  3,  1,  2,  2,  6,  4,  2,  4,  3,  0,  0,  0,  3,  8,  2,  4,  0,  1,
+         2,  0,  1,  4,  6,  5,  8,  0,  7,  9,  3,  4,  6,  6,  5,  8,  9,  3,  4,  3,  7,  0,
+         4,  9,  0,  9,  8,  4,  3,  0,  7,  7,  1,  9,  1,  9,  4,  9,  0,  1,  9,  5,  7,  7,
+         1,  5,  8,  2,  8,  2,  6,  8,  2,  2,  7,  5,  1,  7,  9,  6]
+    ]
+
     def can_jump(self, nums: List[int]) -> bool:
         return self.solution3(nums)
 
@@ -93,12 +107,7 @@ class TestJumpGame(unittest.TestCase):
         self.assertEqual(self.can_jump([1, 2, 3]), True)
 
     def test_jump4(self):
-        self.assertEqual(self.can_jump(
-            [2,  0,  6,  9,  8,  4,  5,  0,  8,  9,  1,  2,  9,  6,  8,  8,  0,  6,  3,  1,  2,  2,
-             1,  2,  6,  5,  3,  1,  2,  2,  6,  4,  2,  4,  3,  0,  0,  0,  3,  8,  2,  4,  0,  1,
-             2,  0,  1,  4,  6,  5,  8,  0,  7,  9,  3,  4,  6,  6,  5,  8,  9,  3,  4,  3,  7,  0,
-             4,  9,  0,  9,  8,  4,  3,  0,  7,  7,  1,  9,  1,  9,  4,  9,  0,  1,  9,  5,  7,  7,
-             1,  5,  8,  2,  8,  2,  6,  8,  2,  2,  7,  5,  1,  7,  9,  6]), False)
+        self.assertEqual(self.can_jump(self.test_data[0]), False)
 
     def test_jump5(self):
         self.assertEqual(self.can_jump([0]), True)
@@ -108,3 +117,10 @@ class TestJumpGame(unittest.TestCase):
 
     def test_jump7(self):
         self.assertEqual(self.can_jump([2, 0, 0]), True)
+
+    def test_profiling(self):
+        LOG.info("55. solution1: %s",
+                 timeit.timeit(lambda: self.solution3(self.test_data[0]), number=1000))
+
+        LOG.info("55. solution1: %s",
+                 timeit.timeit(lambda: cython_solution3(self.test_data[0]), number=1000))

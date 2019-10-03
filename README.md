@@ -24,4 +24,5 @@ please check the setup.py and add your cython imeplement ot the EXTENSIONS part
 ```
 python setup.py build_ext --inplace
 coverage run -m pytest --verbose -s
+# coverage run -m pytest --verbose -s leetcode/55
 ```

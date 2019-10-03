@@ -6,3 +6,4 @@
 practice_leetcode.egg-info
 build
 *.so
+*.c
