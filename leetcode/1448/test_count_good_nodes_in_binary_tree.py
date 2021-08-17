@@ -1,7 +1,6 @@
 # Minimum Window Substring
 import unittest
 import logging
-from collections import defaultdict, Counter
 
 LOG = logging.getLogger(__name__)
 
