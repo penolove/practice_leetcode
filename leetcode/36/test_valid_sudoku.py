@@ -87,6 +87,7 @@ class TestSolution(unittest.TestCase):
         ]
         obj = Solution()
         assert obj.isValidSudoku(board) == True
+
     def test2(self):
         board = [
             ["8", "3", ".", ".", "7", ".", ".", ".", "."],
